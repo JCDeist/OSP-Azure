@@ -12,14 +12,6 @@ $IAMUserName = $SiteName + "Terraform"
 # Login via device code
 az login --use-device-code
 
-# Create the terraform user and client secret. SAves these as:
-# AZURE_AD_CLIENT_ID = appId 
-# AZURE_AD_CLIENT_SECRET = password 
-# AZURE_AD_TENANT_ID = tenant 
-# AZURE_AD_SUBSCRIPTION_ID = subscriptionID
-az account set --subscription="$SubscritpionID"
-az ad sp create-for-rbac -n "$IAMUserName"
-
 # Create the Storage Account for Terraform TS STate
 $StateRGName = $SiteName.ToLower() + "tftate"
 $StateStorageName = $SiteName.ToLower() + "tf"
@@ -28,3 +20,11 @@ $StateContainerName = "tfstate" + $SiteName.ToLower()
 az group create -n $StateRGName -l $Region
 az storage account create -n $StateStorageName -g $StateRGName -l $Region --sku Standard_LRS
 az storage container create --account-name $StateStorageName -n $StateContainerName
+
+# Create the terraform user and client secret. SAves these as:
+# AZURE_AD_CLIENT_ID = appId 
+# AZURE_AD_CLIENT_SECRET = password 
+# AZURE_AD_TENANT_ID = tenant 
+# AZURE_AD_SUBSCRIPTION_ID = subscriptionID
+az account set --subscription="$SubscritpionID"
+az ad sp create-for-rbac -n "$IAMUserName"
