@@ -2,7 +2,7 @@ resource "azurerm_resource_group" "{var.projectname}rg" {
   name     = "{var.projectname}-rg"
   location = "var.region"
 }
-
+/*
 resource "azurerm_virtual_network" "{var.projectname}vnet" {
   name                = "{var.projectname}-network"
   address_space       = ["10.0.0.0/16"]
@@ -56,3 +56,4 @@ resource "azurerm_linux_virtual_machine" "{var.projectname}" {
     version   = "latest"
   }
 }
+*/
